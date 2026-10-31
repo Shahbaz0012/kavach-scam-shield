@@ -1,0 +1,12 @@
+# Local operating-system files
+.DS_Store
+Thumbs.db
+
+# Local environment files (keep secrets out of Git)
+.env
+.env.*
+!.env.example
+
+# Build and dependency folders
+node_modules/
+dist/

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Kavach: a privacy-first UPI scam shield demo." />
+  <title>Kavach — UPI Scam Shield</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip" href="#analyzer">Skip to analyser</a>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="Kavach home"><span class="mark">K</span><span>KAVACH</span></a>
+    <div class="privacy-pill"><span class="dot"></span>Private by design</div>
+    <button class="language" id="languageToggle" type="button" aria-label="Switch language">हि <span>EN</span></button>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="heroTitle">
+      <div class="eyebrow"><span></span><span data-i18n="eyebrow">AI-powered scam protection</span></div>
+      <h1 id="heroTitle" data-i18n="title">Know before you <em>pay.</em></h1>
+      <p data-i18n="subtitle">Drop a UPI screenshot, QR code, SMS, or voice note. Kavach spots risky payment requests before your money leaves.</p>
+      <div class="trust-row"><span>◈ <span data-i18n="trust1">No payment access</span></span><span>◈ <span data-i18n="trust2">No data stored</span></span><span>◈ <span data-i18n="trust3">Works in seconds</span></span></div>
+    </section>
+
+    <section class="analyzer" id="analyzer" aria-label="Scam analyser">
+      <div class="input-panel">
+        <div class="panel-head"><div><span class="step">01</span><h2 data-i18n="checkTitle">Check something</h2></div><span class="secure">⌁ <span data-i18n="device">On this device</span></span></div>
+        <div class="tabs" role="tablist" aria-label="Input type">
+          <button class="tab active" role="tab" aria-selected="true" data-type="text">Message</button>
+          <button class="tab" role="tab" aria-selected="false" data-type="image">Screenshot</button>
+          <button class="tab" role="tab" aria-selected="false" data-type="qr">QR / UPI</button>
+          <button class="tab" role="tab" aria-selected="false" data-type="voice">Voice</button>
+        </div>
+        <div class="input-area" id="textInput">
+          <label for="message" data-i18n="messageLabel">Paste the message you received</label>
+          <textarea id="message" maxlength="1000" placeholder="e.g. Your KYC expires in 10 minutes. Pay ₹1 to verify now…"></textarea>
+          <div class="input-footer"><span id="count">0 / 1000</span><button class="sample" id="sampleBtn" type="button">Try a sample ↗</button></div>
+        </div>
+        <div class="upload-area hidden" id="uploadInput">
+          <input id="fileInput" type="file" accept="image/png,image/jpeg,image/webp,audio/*" />
+          <label for="fileInput" id="dropLabel"><span class="upload-icon">↑</span><strong>Drop a file here</strong><small>PNG, JPG, WEBP or audio — max 10 MB</small><span class="browse">Browse files</span></label>
+        </div>
+        <div class="input-area hidden" id="upiInput">
+          <label for="upi" data-i18n="upiLabel">Paste a UPI link, ID, or QR payload</label>
+          <textarea id="upi" maxlength="1000" placeholder="upi://pay?pa=merchant@upi&pn=…"></textarea>
+          <div class="hint">Tip: QR apps often show the destination UPI ID before approval.</div>
+        </div>
+        <button class="analyse" id="analyse" type="button"><span>✦</span> <span data-i18n="analyse">Analyse safely</span></button>
+      </div>
+
+      <aside class="result-panel" aria-live="polite" aria-labelledby="resultTitle">
+        <div class="panel-head"><div><span class="step">02</span><h2 id="resultTitle" data-i18n="verdictTitle">Your verdict</h2></div><button class="reset" id="reset" type="button">Reset</button></div>
+        <div class="empty-state" id="emptyState"><div class="shield">⌬</div><h3 data-i18n="waiting">We’re ready when you are</h3><p data-i18n="waitingCopy">Your result will explain what looks suspicious and what to do next.</p></div>
+        <div class="result hidden" id="result">
+          <div class="verdict-head"><div class="verdict-icon" id="verdictIcon">!</div><div><span class="risk-label" id="riskLabel">HIGH RISK</span><h3 id="verdictHeadline">Likely payment scam</h3></div></div>
+          <div class="meter"><span id="meterFill"></span></div><p class="score" id="score">Risk score: 86 / 100</p>
+          <div class="explanation" id="explanation"></div>
+          <div class="facts" id="facts"></div>
+          <div class="next-step"><strong>What to do now</strong><p id="nextStep"></p></div>
+          <div class="actions"><button id="copyResult" type="button">Copy result</button><button class="secondary" id="reportBtn" type="button">Report fraud ↗</button></div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="how"><div><span class="step">HOW IT WORKS</span><h2 data-i18n="howTitle">A calmer second opinion,<br/>before you tap approve.</h2></div><div class="how-grid"><article><b>01</b><h3>Read the signal</h3><p>Looks for urgency, impersonation, and payment-request language.</p></article><article><b>02</b><h3>Inspect the payment</h3><p>Checks UPI handles and whether a QR initiates a pay or collect flow.</p></article><article><b>03</b><h3>Explain clearly</h3><p>Gives an easy next step in English, Hindi, or Hinglish.</p></article></div></section>
+  </main>
+  <footer><span class="brand"><span class="mark">K</span><span>KAVACH</span></span><p>This is an educational demo, not a bank or fraud-reporting service.</p><span>Stay alert. Stay protected.</span></footer>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
